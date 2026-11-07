@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff4f8">
+<title>Para ti, mi amor</title>
+<style>
+  :root { --pink:#e98eae; --deep:#c85d88; --pale:#fff3f7; --ink:#75465a; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; overflow-x:hidden;
+    display:grid; place-items:center; padding:28px 16px;
+    font-family: Georgia, "Times New Roman", serif; color:var(--ink);
+    background:
+      radial-gradient(ellipse at 15% 18%, #ffe1ec 0 2px, transparent 3px),
+      radial-gradient(ellipse at 82% 78%, #f8c9da 0 2px, transparent 3px),
+      linear-gradient(135deg,#fffafd,#fff0f6 52%,#fffafd);
+    background-size:34px 34px,42px 42px,auto;
+  }
+  .lily {
+    position:fixed; width:min(34vw,250px); opacity:.42; pointer-events:none;
+    filter:drop-shadow(0 5px 8px #d68aa555);
+  }
+  .lily.left { left:-28px; top:3%; transform:rotate(-17deg); }
+  .lily.right { right:-28px; bottom:2%; transform:rotate(165deg); }
+  .lily.top { right:5%; top:4%; width:min(22vw,155px); transform:rotate(35deg); opacity:.28; }
+  main { width:min(100%,560px); text-align:center; position:relative; z-index:1; }
+  h1 { font-size:clamp(27px,6vw,40px); font-weight:normal; margin:0 0 9px; color:#b9577e; }
+  .subtitle { margin:0 0 28px; font-size:15px; color:#a66a81; }
+  .envelope-wrap { perspective:1000px; margin:0 auto; width:min(88vw,390px); }
+  .envelope {
+    position:relative; height:250px; border-radius:8px; cursor:pointer;
+    background:repeating-linear-gradient(135deg,#fff 0 13px,#f7c4d7 13px 25px);
+    box-shadow:0 18px 40px #b85d8029; outline:none;
+    transition:transform .3s ease, filter .3s ease;
+  }
+  .envelope:hover { transform:translateY(-4px); }
+  .envelope:focus-visible { outline:3px solid #bd6387; outline-offset:5px; }
+  .envelope:before {
+    content:""; position:absolute; inset:0; border-radius:8px;
+    background:linear-gradient(145deg,transparent 49.5%,#fbe7ef 50%) left/50% 100% no-repeat,
+               linear-gradient(215deg,transparent 49.5%,#fff 50%) right/50% 100% no-repeat;
+    opacity:.95;
+  }
+  .flap {
+    position:absolute; z-index:4; left:0; right:0; top:0; height:58%;
+    background:linear-gradient(145deg,#fff 0 48%,#f4b9cf 49% 51%,#fff 52%);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top; transition:transform .8s ease; 
+    filter:drop-shadow(0 3px 2px #b85d8030);
+  }
+  .letter-peek {
+    position:absolute; z-index:2; left:8%; width:84%; height:78%; bottom:8%;
+    background:#fffdfd; border:1px solid #f2c4d5; border-radius:4px;
+    transition:transform .9s ease; display:grid; place-items:center;
+    color:#c56a8c; font-size:20px;
+  }
+  .front {
+    position:absolute; z-index:3; inset:0; display:grid; place-items:end center;
+    padding-bottom:28px; pointer-events:none;
+  }
+  .seal {
+    width:58px; height:58px; border-radius:50%; display:grid; place-items:center;
+    background:#d9779b; color:white; font-size:25px;
+    box-shadow:0 3px 9px #9e496a55; border:3px solid #fce5ed;
+  }
+  .hint { margin:19px 0 0; color:#a45c78; font-size:15px; }
+  .letter {
+    display:none; margin:25px auto 0; padding:clamp(25px,6vw,42px);
+    background:linear-gradient(#fffdfd,#fff8fb);
+    border:1px solid #efc3d3; border-radius:10px;
+    box-shadow:0 12px 35px #b85d8020; text-align:left;
+    animation:appear .8s ease both;
+  }
+  .letter h2 { text-align:center; font-size:25px; font-weight:normal; color:#b9577e; margin:0 0 22px; }
+  .letter p { font-size:clamp(17px,4vw,20px); line-height:1.85; margin:0; white-space:normal; }
+  .signature { text-align:center; color:#c56a8c; margin-top:25px; font-size:20px; }
+  .opened .flap { transform:rotateX(180deg); z-index:1; }
+  .opened .letter-peek { transform:translateY(-48px); }
+  .opened .front { opacity:0; transition:opacity .25s ease; }
+  .opened + .hint { display:none; }
+  .opened ~ .letter { display:block; }
+  @keyframes appear { from {opacity:0; transform:translateY(14px)} to {opacity:1; transform:translateY(0)} }
+  @media (prefers-reduced-motion:reduce) { *,*:before,*:after {transition:none!important;animation:none!important;} }
+</style>
+</head>
+<body>
+<!-- Lirios decorativos dibujados en SVG para que la página no dependa de imágenes externas -->
+<svg class="lily left" viewBox="0 0 220 220" aria-hidden="true">
+ <g fill="#fff8fc" stroke="#dc8eac" stroke-width="2">
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(0 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(60 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(120 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(180 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(240 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(300 110 110)"/>
+ </g><circle cx="110" cy="110" r="10" fill="#e8b75d"/>
+ <g stroke="#a8b88c" stroke-width="4" fill="none"><path d="M110 120 Q85 165 62 205"/><path d="M89 155 Q45 135 35 160"/></g>
+</svg>
+<svg class="lily right" viewBox="0 0 220 220" aria-hidden="true">
+ <g fill="#fff8fc" stroke="#dc8eac" stroke-width="2">
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(0 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(60 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(120 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(180 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(240 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(300 110 110)"/>
+ </g><circle cx="110" cy="110" r="10" fill="#e8b75d"/>
+ <g stroke="#a8b88c" stroke-width="4" fill="none"><path d="M110 120 Q85 165 62 205"/><path d="M89 155 Q45 135 35 160"/></g>
+</svg>
+<svg class="lily top" viewBox="0 0 220 220" aria-hidden="true">
+ <g fill="#fff8fc" stroke="#dc8eac" stroke-width="2">
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(0 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(60 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(120 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(180 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(240 110 110)"/>
+  <ellipse cx="110" cy="65" rx="25" ry="66" transform="rotate(300 110 110)"/>
+ </g><circle cx="110" cy="110" r="10" fill="#e8b75d"/>
+</svg>
+
+<main>
+  <h1>Para ti, mi amor ♡</h1>
+  <p class="subtitle">Hay algo bonito esperando dentro de este sobre</p>
+  <div class="envelope-wrap">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Abrir la carta">
+      <div class="letter-peek">Con cariño ♡</div>
+      <div class="flap"></div>
+      <div class="front"><div class="seal">♡</div></div>
+    </div>
+    <p class="hint">Toca el sobre para abrir tu carta</p>
+    <article class="letter" aria-live="polite">
+      <h2>Para mi persona especial</h2>
+      <p>Solo tengo ojos para ti eres mi dulzura mi amor hermosa que brilla como mi luna que siempre me ilumina donde tu sonrisa me quiero perder y tus cachetitos hermosos me quiero recostar te amo por ser mi persona especial a la cual puedo amar con infinidad</p>
+      <div class="signature">Con todo mi cariño ♡</div>
+    </article>
+  </div>
+</main>
+<script>
+  const envelope = document.getElementById('envelope');
+  function openLetter() { envelope.classList.add('opened'); }
+  envelope.addEventListener('click', openLetter);
+  envelope.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLetter(); }
+  });
+</script>
+</body>
+</html>
