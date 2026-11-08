@@ -83,6 +83,35 @@
   .opened ~ .letter { display:block; }
   @keyframes appear { from {opacity:0; transform:translateY(14px)} to {opacity:1; transform:translateY(0)} }
   @media (prefers-reduced-motion:reduce) { *,*:before,*:after {transition:none!important;animation:none!important;} }
+
+/* Botón y contador de "Te amo" */
+.love-counter {
+  margin: 1.5rem auto 0;
+  text-align: center;
+}
+#loveButton {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.8rem 1.5rem;
+  background: #e98cae;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(180, 85, 125, 0.2);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+#loveButton:hover {
+  background: #dc739b;
+  transform: translateY(-2px);
+}
+#loveButton:active { transform: scale(0.97); }
+#loveCount {
+  margin: 0.75rem 0 0;
+  color: #b85f83;
+  font-weight: 700;
+}
+
 </style>
 </head>
 <body>
@@ -132,7 +161,12 @@
     <p class="hint">Toca el sobre para abrir tu carta</p>
     <article class="letter" aria-live="polite">
       <h2>Para mi persona especial</h2>
-      <p>Solo tengo ojos para ti eres mi dulzura mi amor hermosa que brilla como mi luna que siempre me ilumina donde tu sonrisa me quiero perder y tus cachetitos hermosos me quiero recostar te amo por ser mi persona especial a la cual puedo amar con infinidad</p>
+      <p>Eres mi dulzura y mi niña bonita, me encanta tu sonrisa y esos cachetitos tuyos que tanto me gustan. A veces quisiera tenerte aquí conmigo, abrazarte y simplemente quedarme contigo sin tener que hacer nada más. Me gusta mucho cómo me haces sentir y lo bonito que es tener a alguien como tú en mi vida. Quiero que sepas que eres mi persona especial, que te quiero muchísimo y que de verdad me encanta poder darte todo este cariño. No sé qué hice para coincidir contigo, pero me alegra muchísimo que haya pasado. Quiero seguir compartiendo momentos contigo, seguir haciéndote sonreír y demostrarte que lo que siento por ti es de verdad. Te amo muchísimo, mi niña hermosa.</p>
+
+<div class="love-counter">
+  <button id="loveButton" type="button">Te amo ❤️</button>
+  <p id="loveCount" aria-live="polite">Te amo x0</p>
+</div>
       <div class="signature">Con todo mi cariño ♡</div>
     </article>
   </div>
@@ -144,6 +178,17 @@
   envelope.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openLetter(); }
   });
+
+  const loveButton = document.getElementById("loveButton");
+  const loveCount = document.getElementById("loveCount");
+  let loveClicks = 0;
+  if (loveButton && loveCount) {
+    loveButton.addEventListener("click", () => {
+      loveClicks += 1;
+      loveCount.textContent = `Te amo x${loveClicks}`;
+    });
+  }
+
 </script>
 </body>
 </html>
